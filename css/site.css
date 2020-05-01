@@ -1,5 +1,6 @@
 input[type=text]{
     padding: .4em;
+    margin: .2em;
 }
 
 label{
@@ -8,6 +9,16 @@ label{
     text-align: right;
 }
 
-input[type=checkbox], input[type=button]{
+h1, #validation-summary > p, input[type=checkbox], input[type=button]{
     margin-left: 50%;
+}
+
+input[type=checkbox]{
+    margin-left: 1%;
+}
+
+#form-box{
+    border: 1000px, solid, black;
+    float: center;
+    width: 40;
 }
