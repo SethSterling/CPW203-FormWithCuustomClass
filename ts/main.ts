@@ -43,7 +43,31 @@ function getVideoGame():VideoGame{
 
 function displayGame(myGame:VideoGame):void{
     //Display video game 
-}
+    let displayDiv = getById("display");
+
+    let gameHeading = document.createElement("h2");
+    gameHeading.innerText = myGame.title;
+    displayDiv.appendChild(gameHeading);
+    
+    let digitalGame = "is not"
+    if (myGame.isDigitalOnly) {
+        digitalGame = "is"
+    }
+    else{
+        digitalGame = "is not"
+    }
+
+    let gameInfo = document.createElement("p");
+//    gameInfo.innerText = myGame.title + " has a rating of " +
+//                         myGame.rating + ". It cost " + myGame.price +
+//                         ". It " + digitalGame + " digital only";
+
+    gameInfo.innerText = `${myGame.title} has a rating of ${myGame.rating}. 
+    It cost ${myGame.price}. 
+    It ${digitalGame} digital only.`
+    
+    displayDiv.appendChild(gameInfo);
+    }
 
 function isAllValid():boolean{
     //Add code
