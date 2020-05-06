@@ -22,3 +22,14 @@ input[type=checkbox]{
     float: center;
     width: 40;
 }
+
+#validation-summary{
+    color: red;
+    list-style-type: square;
+}
+
+.rating-error{
+    font-style: italic;
+    cursor: pointer;
+    width: 25%;
+}
