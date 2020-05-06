@@ -16,8 +16,18 @@ window.onload = function(){
     addBtn.onclick = addVideoGame;
 }
 
+/**
+ * Clears all errors
+ */
+function clearAllErrors() {
+    let errSummary = getById("validation-summary");
+    errSummary.innerText = "";
+}
+
 function addVideoGame() {
-    if (isAllValid) {
+    clearAllErrors();
+
+    if (isAllValid()) {
         let game = getVideoGame();
         displayGame(game);
     }
@@ -63,14 +73,43 @@ function displayGame(myGame:VideoGame):void{
 //                         ". It " + digitalGame + " digital only";
 
     gameInfo.innerText = `${myGame.title} has a rating of ${myGame.rating}. 
-    It cost ${myGame.price}. 
+    It cost $${myGame.price.toFixed(2)}. 
     It ${digitalGame} digital only.`
     
     displayDiv.appendChild(gameInfo);
     }
 
+function getInputId(id:string):HTMLInputElement {
+    return <HTMLInputElement>document.getElementById(id);
+}
+
 function isAllValid():boolean{
-    //Add code
-    return true;
+    let isValid = true;
+    let title = getInputId("title").value;
+    if(title == ""){
+        isValid = false;
+        addErrorMessage("Title is required");
+    }
+
+    let price = getInputId("price").value;
+    let priceValue = parseFloat(price);
+    if(price == "" ||  isNaN(priceValue)){
+        isValid = false;
+        addErrorMessage("Price is required and must be a number");
+    }
+
+    let rating = (<HTMLOptionElement>getById("rating")).value
+    if(rating == ""){
+        addErrorMessage("You must choose a rating.")
+    }
+
+    return isValid;
+}
+
+function addErrorMessage(errMsg:string) {
+    let errSummary = getById("validation-summary");
+    let errItem = document.createElement("li");
+    errItem.innerText = errMsg;
+    errSummary.appendChild(errItem);
 }
 
